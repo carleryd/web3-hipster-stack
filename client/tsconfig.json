@@ -1,0 +1,8 @@
+{
+  "extends": "./config/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/client"
+  },
+  "files": ["./index.ts"],
+  "exclude": ["node_modules", "dist"]
+}
