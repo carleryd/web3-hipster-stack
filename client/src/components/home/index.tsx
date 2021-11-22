@@ -1,32 +1,42 @@
-import * as React from "react";
+import { useCallback, useEffect, useState } from "react";
+import { BlocksLatest } from "../../../../src/shared/types";
 
-type Block = {
-  id: number;
-  value: number;
-};
-const blocks: Block[] = [1, 2, 3, 4, 5].map((id) => ({
-  id,
-  value: id * Math.random() * 100,
-}));
+const ws = new WebSocket("ws://localhost:3000");
+
+type Message = BlocksLatest;
 
 type BlockProps = {
-  block: Block;
+  message: Message;
 };
-const Block = ({ block: { id, value } }: BlockProps) => (
-  <div>
-    {id} {value}
+const Block = ({ message }: BlockProps) => (
+  <div className="w-60 h-10 m-1 border-black border shadow-md rounded-md flex flex-row items-center justify-evenly align-center text-lg">
+    <p className="text-black">{message.hash.substring(1, 6)}</p>
+    <p className="text-blue-500">{message.slot}</p>
+    <p className="text-green-500">{message.epoch}</p>
   </div>
 );
 
 const Home = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    ws.addEventListener("message", (event) => {
+      const newMessage: Message = JSON.parse(event.data);
+      console.log("received: %s", newMessage.hash);
+      setMessages((oldMessages) => [newMessage, ...oldMessages]);
+    });
+  }, [ws]);
+
   return (
-    <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4 flex-col">
-      <div className="text-xl font-medium text-black">Web3 Hipster Stack!</div>
-      <p className="text-gray-500">
-        {blocks.map((block) => (
-          <Block block={block} />
+    <div className="mx-auto rounded-xl flex items-center flex-col">
+      <div className="text-5xl p-4 font-medium text-black">
+        Web3 Hipster Stack!
+      </div>
+      <div className="flex flex-col text-gray-500">
+        {messages.map((message, i) => (
+          <Block key={i} message={message} />
         ))}
-      </p>
+      </div>
     </div>
   );
 };

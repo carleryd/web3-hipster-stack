@@ -5,6 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
+    "watch": "parcel watch src/index.html",
     "build": "parcel build src/index.html --dist-dir dist"
   },
   "devDependencies": {
@@ -15,5 +16,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "@types/ws": "^8.2.0",
+    "ws": "^8.2.3"
   }
 }
