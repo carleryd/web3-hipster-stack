@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BlocksLatest } from "../../../../src/shared/types";
 
 const ws = new WebSocket("ws://localhost:3000");
@@ -10,7 +10,7 @@ type BlockProps = {
 };
 const Block = ({ message }: BlockProps) => (
   <div className="w-60 h-10 m-1 border-black border shadow-md rounded-md flex flex-row items-center justify-evenly align-center text-lg">
-    <p className="text-black">{message.hash.substring(1, 6)}</p>
+    <p className="text-black">{message.hash.substring(0, 10)}</p>
     <p className="text-blue-500">{message.slot}</p>
     <p className="text-green-500">{message.epoch}</p>
   </div>

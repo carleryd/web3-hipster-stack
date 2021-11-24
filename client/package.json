@@ -2,19 +2,32 @@
   "name": "client",
   "version": "1.0.0",
   "license": "MIT",
-  "source": "src/index.html",
+  "main": "src/index.html",
   "scripts": {
     "start": "parcel",
     "watch": "parcel watch src/index.html",
-    "build": "parcel build src/index.html --dist-dir dist"
+    "build": "rollup -c"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-react-jsx": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-html": "^0.2.4",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-sucrase": "^4.0.1",
+    "@rollup/plugin-typescript": "^8.3.0",
     "@types/react": "^17.0.35",
+    "acorn-jsx": "^5.3.2",
     "autoprefixer": "^10.4.0",
-    "parcel": "^2.0.1",
     "postcss": "^8.3.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "rollup": "^2.60.1",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.31.0",
     "tailwindcss": "^2.2.19"
   },
   "dependencies": {

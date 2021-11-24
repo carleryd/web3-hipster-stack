@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/index.js"
+    "start": "node ./dist/index.js",
+    "client-install": "yarn --cwd ./client/ install",
+    "client-build": "yarn --cwd ./client/ build"
   },
   "devDependencies": {
     "@blockfrost/blockfrost-js": "^2.0.2",

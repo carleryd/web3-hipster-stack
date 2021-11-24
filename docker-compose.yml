@@ -1,0 +1,20 @@
+ version: "3.7"
+
+ services:
+   server:
+     image: node:14-alpine
+     command: sh -c "yarn install && yarn build && yarn start"
+     ports:
+       - 3000:3000
+     working_dir: /web3-hipster-stack
+     volumes:
+       - ./:/web3-hipster-stack
+
+   client:
+     context: /client
+     dockerfile: Dockerfile
+     image: node:14-alpine
+     command: sh -c "cd client && yarn install && yarn watch"
+     working_dir: /web3-hipster-stack/client
+     volumes:
+       - ./:/web3-hipster-stack/client
