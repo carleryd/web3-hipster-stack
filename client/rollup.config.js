@@ -4,18 +4,27 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
 import replace from "rollup-plugin-replace";
+import sucrase from "@rollup/plugin-sucrase";
+import postcss from "rollup-plugin-postcss";
+// import json from "@rollup/plugin-json";
 
 export default {
-  input: "./src/test.jsx",
+  input: "./src/index.tsx",
   output: [
     {
       dir: "dist",
       format: "iife",
     },
   ],
-  // Necessary for passing JSX through `typescript` plugin
-  // acornInjectPlugins: [jsx()],
   plugins: [
+    postcss({
+      config: {
+        path: "./postcss.config.js",
+      },
+      extensions: [".css"],
+      extract: true,
+      modules: true,
+    }),
     // Bundle imports from node_modules
     resolve(),
     // Transforms CommonJS -> ES6
@@ -24,11 +33,8 @@ export default {
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
     }),
-    babel({
-      babelHelpers: "bundled",
-      presets: ["@babel/env", "@babel/preset-react"],
+    sucrase({
+      transforms: ["typescript", "jsx"],
     }),
-    // Converts TypeScript to JavaScript
-    // typescript({ tsconfig: false }),
   ],
 };
