@@ -12,8 +12,6 @@ import tailwindcss from "tailwindcss";
 import postcssImport from "postcss-import";
 import autoprefixer from "autoprefixer";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
-
 export default {
   input: "./src/index.tsx",
   output: [
@@ -24,7 +22,7 @@ export default {
   ],
   plugins: [
     // Bundle imports from node_modules
-    resolve({ extensions }),
+    resolve({ extensions: [".js", ".jsx", ".ts", ".tsx"] }),
     // Transforms CommonJS -> ES6
     // Most node_modules are in cjs, but plugins require es6
     commonjs(),
@@ -33,10 +31,13 @@ export default {
     }),
     postcss({
       config: false,
-      plugins: [tailwindcss, postcssImport, autoprefixer],
+      plugins: [
+        postcssImport,
+        tailwindcss({ config: "tailwind.config.js" }),
+        autoprefixer,
+      ],
       extensions: [".css"],
       extract: path.resolve("dist/styles.css"),
-      modules: true,
     }),
     sucrase({
       exclude: ["node_modules/**"],
