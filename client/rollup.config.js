@@ -1,17 +1,16 @@
-// import jsx from "acorn-jsx";
-// import typescript from "@rollup/plugin-typescript";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-// import babel from "@rollup/plugin-babel";
 import replace from "rollup-plugin-replace";
 import sucrase from "@rollup/plugin-sucrase";
 import postcss from "rollup-plugin-postcss";
-// import json from "@rollup/plugin-json";
-import path from "path";
 import tailwindcss from "tailwindcss";
 import postcssImport from "postcss-import";
 import autoprefixer from "autoprefixer";
 
+/**
+ * This configures Rollup to parse TypeScript and output JavaScript and CSS files which is then
+ * imported by ./dist/index.html
+ */
 export default {
   input: "./src/index.tsx",
   output: [
@@ -37,7 +36,7 @@ export default {
         autoprefixer,
       ],
       extensions: [".css"],
-      extract: path.resolve("dist/styles.css"),
+      extract: "dist/styles.css",
     }),
     sucrase({
       exclude: ["node_modules/**"],

@@ -4,27 +4,16 @@
   "license": "MIT",
   "main": "src/index.html",
   "scripts": {
-    "start": "parcel",
     "watch": "rollup -cw",
     "build": "rollup -c"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/plugin-transform-react-jsx": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
-    "@babel/preset-react": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
-    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-html": "^0.2.4",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-sucrase": "^4.0.1",
-    "@rollup/plugin-typescript": "^8.3.0",
     "@types/react": "^17.0.35",
     "@types/tailwindcss": "^2.2.4",
-    "acorn-jsx": "^5.3.2",
     "autoprefixer": "^10.4.0",
-    "path": "^0.12.7",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
     "react": "^17.0.2",
@@ -32,11 +21,6 @@
     "rollup": "^2.60.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-typescript2": "^0.31.0",
     "tailwindcss": "^2.2.19"
-  },
-  "dependencies": {
-    "@types/ws": "^8.2.0",
-    "ws": "^8.2.3"
   }
 }
